@@ -1,35 +1,30 @@
 #include <stdio.h>
 
 #define N 5
-#define M 4
+#define M 6
 
-void process(int n, int m, int matrix [M][N], int *result)
-{
-    int tmp_min = matrix[0][0];
-    for (int i = 0; i < m; ++i) {
-        for (int j = 0; j < n; ++j) {
-            if (tmp_min <= matrix[i][j]){
-                tmp_min = matrix[i][j];
-            }
-        }
-    }
-    *result = tmp_min;
-}
+int main() {
+    int array[N][M] = {
+        {1, -3, 4, -2, 6, -7},
+        {8, -9, 10, -11, 12, -13},
+        {14, 15, -16, -17, 18, -19},
+        {20, -21, 22, 23, -24, 25},
+        {-26, 27, 28, -29, 30, -31}
+    };
 
-int main(int argc, char** argv)
-{
-    int matrix[M][N];
-    int result;
-    
-    for (int i = 0; i < M; ++i) {
-        for (int j = 0; j < N; ++j) {
-            scanf("%d", &matrix[i][j]);
+    int pos_count = 0, neg_count = 0;
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            if (array[i][j] > 0)
+                pos_count++;
+            else if (array[i][j] < 0)
+                neg_count++;
         }
     }
 
-    process(N, M, matrix, &result);
-
-    printf("%d", result);
+    printf("Positive count: %d\n", pos_count);
+    printf("Negative count: %d\n", neg_count);
 
     return 0;
 }
